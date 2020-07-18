@@ -6,6 +6,13 @@
 trigger:
 - master
 
+variables:
+  # Azure service connection established during pipeline creation
+  azureSubscription: Free Trial
+  appName: shashankFunction
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -20,16 +27,6 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-    
-trigger:
-- master
-
-variables:
-  # Azure service connection established during pipeline creation
-  azureSubscription: Free Trial
-  appName: shashankFunction
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
 
 - task: AzureFunctionApp@1 # Add this at the end of your file
   inputs:
